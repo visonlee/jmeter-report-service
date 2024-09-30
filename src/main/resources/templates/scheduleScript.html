@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>run script</title>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<a th:href="'/'" th:text="返回"></a>
+
+<div>
+    <p>your script Id: <span th:text="${script.id}"/></p>
+    <p>your filename: <span th:text="${script.filename}"/></p>
+</div>
+<div>
+    <form method="post" th:action="'/scheduleScript/' + ${script.id}" th:object="${scriptJobDto}">
+        <table>
+            <tr>
+                <td>expectedStartTime: </td>
+                <td><input id="expectedStartTime" placeholder="yyyy-MM-dd HH:mm:ss" required type="text" th:field="*{expectedStartTime}"/></td></tr>
+        </table>
+
+        <input type="submit" value="run">
+    </form>
+</div>
+</body>
+</html>

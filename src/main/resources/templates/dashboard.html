@@ -1,0 +1,57 @@
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+	<style>
+		table, th, td {
+          border: 1px solid black;
+        }
+	</style>
+</head>
+<body>
+
+	<div th:if="${message}">
+		<h2 th:text="${message}"/>
+	</div>
+
+	<div>
+		<form method="POST" enctype="multipart/form-data" action="/">
+			<table>
+				<tr><td>jmx or zip file to upload:</td><td><input type="file" name="file" /></td></tr>
+				<tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+			</table>
+		</form>
+	</div>
+
+	<div>
+		<table>
+			<tr>
+				<th>id</th>
+				<th>name</th>
+				<th>status</th>
+				<th>startTime</th>
+				<th>endTime</th>
+				<th>author</th>
+				<th>action</th>
+			</tr>
+
+			<tr th:each="script : ${scripts}">
+				<td><div th:text="${script.id}"/></td>
+				<td>
+					<a th:href="'/script/download/' + ${script.id}" th:text="${script.filename}"></a>
+				</td>
+				<td><div th:text="${script.status}"/></td>
+				<td><div th:text="${script.startTime}"/></td>
+				<td><div th:text="${script.endTime}"/></td>
+				<td><div th:text="${script.username}"/></td>
+				<td>
+                    <!--		NOT_STARTED, WAITING, RUNNING, COMPLETED, CANCELLED, ERROR			-->
+					<span th:if="${script.isRunAllowed}"><a th:href="'/scheduleScript/' + ${script.id}" th:text="run"></a> </span>
+					<span><a th:href="'/scriptRunHistory/' + ${script.id}" th:text="viewResult"></a> </span>
+					<span th:if="${script.isStopAllowed}"><a th:href="'/scheduleScript/' + ${script.id}" th:text="stop"></a> </span>
+					<span><a th:href="'/delete/' + ${script.id}" th:text="delete"></a> </span>
+
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

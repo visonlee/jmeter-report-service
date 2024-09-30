@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>run script</title>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<a th:href="'/'" th:text="返回"></a>
+
+<div>
+    <p>your script Id: <span th:text="${script.id}"/></p>
+    <p>your filename: <span th:text="${script.filename}"/></p>
+</div>
+<div>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>startTime</th>
+            <th>endTime</th>
+            <th>action</th>
+        </tr>
+
+        <tr th:each="runHistory : ${runHistories}">
+            <td>
+                <div th:text="${runHistory.id}"/></td>
+            <td>
+                <div th:text="${runHistory.filename}"/></td>
+            </td>
+            <td><div th:text="${runHistory.startTime}"/></td>
+            <td><div th:text="${runHistory.endTime}"/></td>
+            <td><a th:href="'/report/download/' + ${runHistory.id}" th:text="download"></a></td>
+
+        </tr>
+    </table>
+</div>
+</body>
+</html>
