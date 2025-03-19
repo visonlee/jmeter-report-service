@@ -21,7 +21,7 @@ public class ScriptDto {
     public static ScriptDto convert(Script entity) {
         return ScriptDto.builder()
                 .id(entity.getId())
-                .username("深仔") // todo vince
+                .username("Vince") // todo vince
                 .filename(entity.getFilename())
                 .startTime(entity.getStartTime())
                 .endTime(entity.getEndTime())

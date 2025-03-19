@@ -16,6 +16,6 @@ public interface ScriptRunHistoryRepository extends JpaRepository<ScriptRunHisto
     void deleteByScriptId(@Param("scriptId") Long scriptId);
 
     @Modifying
-    @Query("SELECT t from ScriptRunHistory t where t.scriptId=:scriptId")
+    @Query("SELECT t from ScriptRunHistory t where t.scriptId=:scriptId and t.endTime is not null")
     List<ScriptRunHistory> getRunHistoryByScriptId(@Param("scriptId") Long scriptId);
 }

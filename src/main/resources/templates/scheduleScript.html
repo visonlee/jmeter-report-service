@@ -10,18 +10,21 @@
     </style>
 </head>
 <body>
-<a th:href="'/'" th:text="返回"></a>
+<a th:href="'/'" th:text="go back"></a>
 
 <div>
-    <p>your script Id: <span th:text="${script.id}"/></p>
-    <p>your filename: <span th:text="${script.filename}"/></p>
+    <p>script Id: <span th:text="${script.id}"/>,filename: <span th:text="${script.filename}"/></p>
 </div>
 <div>
     <form method="post" th:action="'/scheduleScript/' + ${script.id}" th:object="${scriptJobDto}">
         <table>
             <tr>
                 <td>expectedStartTime: </td>
-                <td><input id="expectedStartTime" placeholder="yyyy-MM-dd HH:mm:ss" required type="text" th:field="*{expectedStartTime}"/></td></tr>
+                <td>
+                    <input id="expectedStartTime" placeholder="yyyy-MM-dd HH:mm:ss" required type="text" th:field="*{expectedStartTime}"/>
+                    <button type="button" class="btn btn-primary">run now</button>
+                </td>
+            </tr>
         </table>
 
         <input type="submit" value="run">

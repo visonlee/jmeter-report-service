@@ -280,7 +280,7 @@ public class ScriptServiceImpl implements ScriptService {
         resultCollector.setFilename(outJtlFile);
         testPlanTree.add(testPlanTree.getArray()[0], resultCollector);
 
-//        setBackendListener(testPlanTree); // todo need to add backÏ
+        setBackendListener(testPlanTree); // todo need to add backÏ
 
         //runner Jmeter test
         jMeterEngine.configure(testPlanTree);
@@ -299,10 +299,11 @@ public class ScriptServiceImpl implements ScriptService {
         backendListener.setProperty("TestElement.gui_class", "org.apache.jmeter.visualizers.backend.BackendListenerGui");
         backendListener.setProperty("TestElement.test_class", "org.apache.jmeter.visualizers.backend.BackendListener");
 
+        // dataSource influxDb
         Arguments arguments = new Arguments();
         arguments.addArgument("influxdbMetricsSender", "org.apache.jmeter.visualizers.backend.influxdb.HttpMetricsSender");
         arguments.addArgument("influxdbUrl", "http://127.0.0.1:8086/write?db=jmeter");
-        arguments.addArgument("application", "myJmeterTestDemo");
+        arguments.addArgument("application", "myJmeterTestDemo"); //todo vince
         arguments.addArgument("measurement", "jmeter");
         arguments.addArgument("summaryOnly", "true");
         arguments.addArgument("samplersRegex", ".*");

@@ -1,12 +1,22 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-	<style>
-		table, th, td {
-          border: 1px solid black;
-        }
-	</style>
+<!--	<style>-->
+<!--		table, th, td {-->
+<!--          border: 1px solid black;-->
+<!--        }-->
+<!--	</style>-->
+	<title>JMeter Dashboard</title>
+
+	<link th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}" rel="stylesheet">
+
+	<script th:src="@{/webjars/jquery/3.6.4/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.min.js}"></script>
 </head>
 <body>
+
+   <h1>Vince Jmeter test platform</h1>
+
+   <br>
 
 	<div th:if="${message}">
 		<h2 th:text="${message}"/>
@@ -22,7 +32,7 @@
 	</div>
 
 	<div>
-		<table>
+		<table class="table .table-bordered table-hover w-75">
 			<tr>
 				<th>id</th>
 				<th>name</th>
